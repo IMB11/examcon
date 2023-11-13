@@ -7,9 +7,9 @@ console.log(subjects);
 </script>
 
 <template>
-  <div class="hero">
-    <h1>ExamGen</h1>
-  </div>
+  <!-- <div class="hero">
+    <h1>ExamCon</h1>
+  </div> -->
   <div class="subject-list">
     <div v-for="subject in subjects">
       <h2>{{ subject.name }}</h2>
