@@ -1,0 +1,27 @@
+{
+  "name": "4.5.2 Number Bases",
+  "questions": [
+    {
+      "question": "What is the binary equivalent of the decimal number 102?",
+      "marks": 1,
+      "markScheme": [
+        "Showing conversion between decimal 102 to binary 01100110"
+      ]
+    },
+    {
+      "question": "What is the hexadecimal equivalent of the decimal number 87?",
+      "marks": 2,
+      "markScheme": [
+        "Shown conversion between decimal 87 to binary __0101 0111__",
+        "Shown translating each 4 bit group into the hexadecimal __57__"
+      ]
+    },
+    {
+      "question": "Why do computer scientists use hexadecimal over binary?",
+      "marks": 1,
+      "markScheme": [
+        "Easier to read/Shorter to write"
+      ]
+    }
+  ]
+}

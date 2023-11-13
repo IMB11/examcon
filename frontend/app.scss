@@ -1,0 +1,30 @@
+.subject-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xl);
+  padding: var(--gap-xl);
+  width: 100%;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-md);
+}
+
+.max-width-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-xl);
+  padding: var(--gap-xl);
+  width: 100%;
+
+  // fill the height of the page
+  min-height: calc(100vh - 12.75rem);
+}

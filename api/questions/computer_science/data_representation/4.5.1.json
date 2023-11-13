@@ -1,0 +1,67 @@
+{
+  "name": "4.5.1 Number Systems",
+  "questions": [
+    {
+      "question": "What is a natural number?",
+      "markScheme": [
+        "A natural number is __any positive integer__ including zero."
+      ]
+    },
+    {
+      "question": "What is a real number?",
+      "markScheme": [
+        "A real number is __any number__ that is positive or negative."
+      ]
+    },
+    {
+      "question": "What is an integer?",
+      "markScheme": [
+        "An integer is any positive or negative __whole__ number."
+      ]
+    },
+    {
+      "question": "What symbol is used to define the set of all integers?",
+      "markScheme": [
+        "Z"
+      ]
+    },
+    {
+      "question": "What symbol is used to define the set of all real numbers?",
+      "markScheme": [
+        "R"
+      ]
+    },
+    {
+      "question": "What symbol is used to define the set of all natural numbers?",
+      "markScheme": [
+        "N"
+      ]
+    },
+    {
+      "question": "Describe the set of rational numbers.",
+      "markScheme": [
+        "A number that can be written as a fraction",
+        "where both the numerator and denominator are integers."
+      ]
+    },
+    {
+      "question": "Describe the set of irrational numbers, give an example.",
+      "markScheme": [
+        "A number that cannot be written as a fraction, for example:",
+        "pi, e, i, √2"
+      ]
+    },
+    {
+      "question": "Explain why all integers are rational numbers.",
+      "markScheme": [
+        "All integers can be written as a fraction where the denominator is 1."
+      ]
+    },
+    {
+      "question": "Explain the purpose of ordinal numbers.",
+      "markScheme": [
+        "Ordinal numbers are used to describe the position of something in a sequence."
+      ]
+    }
+  ]
+}
