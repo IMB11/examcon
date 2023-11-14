@@ -19,12 +19,12 @@ console.log(route.params);
 const subtopic_id = route.params.subtopic_id;
 
 const result = await (
-  await fetch("http://localhost:3001/v2/subtopic/" + subtopic_id)
+  await fetch("https://zany-guacamole-qgjxgvrq7rq2955j-3001.app.github.dev/v2/subtopic/" + subtopic_id)
 ).json();
 
 console.log(result);
 
-const allQuestions = randomizeQuestionArray(result.subTopic.questions);
+const allQuestions = randomizeQuestionArray(result.questions);
 </script>
 
 <style scoped lang="scss">

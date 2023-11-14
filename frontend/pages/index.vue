@@ -1,7 +1,7 @@
 <script setup>
 import { Card } from "omorphia";
 
-const subjects = await (await fetch("http://localhost:3001/subjects")).json();
+const subjects = await (await fetch("https://zany-guacamole-qgjxgvrq7rq2955j-3001.app.github.dev/subjects")).json();
 
 console.log(subjects);
 </script>

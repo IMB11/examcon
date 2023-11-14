@@ -3,6 +3,7 @@ import { loadSubjects } from "./types/subjects";
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import { getQuestions } from "./types/utils";
 
 // Load questions from ../questions/{subject}/{topic} folders.
 const loadedSubjects = loadSubjects(resolve("questions"));
@@ -94,9 +95,12 @@ app.get("/v2/topic/:topicID", (req, res) => {
     return;
   }
 
+  const questions = topic.questionDefinitions.flatMap(questionDefinition => getQuestions(questionDefinition));
+
   res.json({
     subject: topicSubject,
     topic: topic,
+    questions
   });
 });
 
@@ -120,10 +124,13 @@ app.get("/v2/subtopic/:subTopicID", (req, res) => {
     return;
   }
 
+  const questions = getQuestions(subTopic);
+
   res.json({
     subject: topicSubject,
     topic: topic,
     subTopic: subTopic,
+    questions
   });
 });
 

@@ -9,7 +9,12 @@ export enum VariableType {
 export interface Variable {
   name: string;
   type: VariableType;
-  getValue: (variables: Variable[]) => string;
+  getValue: (variables: EvaluatedVariable[]) => EvaluatedVariable;
+}
+
+export interface EvaluatedVariable {
+  name: string;
+  value: string;
 }
 
 export class NumberGeneratedVariable implements Variable {
@@ -25,8 +30,11 @@ export class NumberGeneratedVariable implements Variable {
     this.max = max;
   }
 
-  public getValue(variables: Variable[]): string {
-    return String(Math.floor(Math.random() * (this.max - this.min + 1) + this.min));
+  public getValue(variables: EvaluatedVariable[]): EvaluatedVariable {
+    return {
+      name: this.name,
+      value: String(Math.floor(Math.random() * (this.max - this.min + 1) + this.min))
+    };
   }
 }
 
@@ -51,19 +59,22 @@ export class EvaluatedTwosComplementVariable implements Variable {
     }
 
     // Convert number value to twos complement binary string.
-    return twosComplement(numberValue, this.bits);
+    return twosComplement(numberValue, this.bits) ?? "0".repeat(this.bits);
   }
 
-  public getValue(variables: Variable[]): string {
+  public getValue(variables: EvaluatedVariable[]): EvaluatedVariable {
     const evaluatedValue = this.value.replace(/{{(.*?)}}/g, (match, p1) => {
       const variable = variables.find((variable) => variable.name === p1);
       if (!variable) {
         throw new Error(`Variable ${p1} not found or hasn't been evaluated yet.`);
       }
-      return variable.getValue(variables);
+      return variable.value;
     });
 
-    return this.twosComplement(evaluatedValue);
+    return {
+      name: this.name,
+      value: this.twosComplement(evaluatedValue)
+    };
   }
 }
 
@@ -78,16 +89,19 @@ export class EvaluatedExpressionVariable implements Variable {
     this.value = value;
   }
 
-  public getValue(variables: Variable[]): string {
+  public getValue(variables: EvaluatedVariable[]): EvaluatedVariable {
     let evaluatedValue = this.value.replace(/{{(.*?)}}/g, (match, p1) => {
       const variable = variables.find((variable) => variable.name === p1);
       if (!variable) {
         throw new Error(`Variable ${p1} not found or hasn't been evaluated yet.`);
       }
-      return variable.getValue(variables);
+      return variable.value;
     });
 
     // Evaluate expression.
-    return eval(evaluatedValue);
+    return {
+      name: this.name,
+      value: eval(evaluatedValue)
+    };
   }
 }

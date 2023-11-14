@@ -3,24 +3,67 @@
   "questions": [
     {
       "question": "What is the binary equivalent of the decimal number 102?",
-      "marks": 1,
       "markScheme": [
-        "Showing conversion between decimal 102 to binary 01100110"
+        "Working showing conversion between decimal 102 to binary 01100110"
       ]
     },
     {
       "question": "What is the hexadecimal equivalent of the decimal number 87?",
-      "marks": 2,
       "markScheme": [
-        "Shown conversion between decimal 87 to binary __0101 0111__",
+        "Working shown conversion between decimal 87 to binary __0101 0111__",
         "Shown translating each 4 bit group into the hexadecimal __57__"
       ]
     },
     {
       "question": "Why do computer scientists use hexadecimal over binary?",
-      "marks": 1,
       "markScheme": [
-        "Easier to read/Shorter to write"
+        "Provides a shorter representation of a number than binary."
+      ]
+    },
+    {
+      "question": "A computer uses 8-bit two's complement to store a number.\nUsing this representation, perform the decimal calculation {{number_a}} - {{number_b}}\nShow all your working.",
+      "repeat": 5,
+      "markScheme": [
+        "Correct representation of {{number_a}} as __{{number_a_binary}}__",
+        "Correct representation of -{{number_b}} as __{{number_b_binary}}__",
+        "Correct result of {{result}} as __{{result_binary}}__ through binary addition of {{number_a_binary}} and {{number_b_binary}}"
+      ],
+      "variables": [
+        {
+          "name": "number_a",
+          "type": "number_generated",
+          "min": 1,
+          "max": 255
+        },
+        {
+          "name": "number_b",
+          "type": "number_generated",
+          "min": 1,
+          "max": 255
+        },
+        {
+          "name": "number_a_binary",
+          "type": "evaluated_twos_complement",
+          "bits": 8,
+          "value": "{{number_a}}"
+        },
+        {
+          "name": "number_b_binary",
+          "type": "evaluated_twos_complement",
+          "bits": 8,
+          "value": "-{{number_b}}"
+        },
+        {
+          "name": "result",
+          "type": "evaluated_expression",
+          "value": "{{number_a}} - {{number_b}}"
+        },
+        {
+          "name": "result_binary",
+          "type": "evaluated_twos_complement",
+          "bits": 8,
+          "value": "{{result}}"
+        }
       ]
     }
   ]

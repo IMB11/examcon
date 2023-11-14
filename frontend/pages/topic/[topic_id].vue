@@ -29,11 +29,11 @@ console.log(route.params);
 const topic_id = route.params.topic_id;
 
 const result = await (
-  await fetch("http://localhost:3001/v2/topic/" + topic_id)
+  await fetch("https://zany-guacamole-qgjxgvrq7rq2955j-3001.app.github.dev/v2/topic/" + topic_id)
 ).json();
 
 const allQuestions = randomizeQuestionArray(
-  result.topic.questionDefinitions.map((def) => def.questions).flat()
+  result.questions
 );
 </script>
 

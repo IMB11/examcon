@@ -10,7 +10,7 @@ const { subTopics, topic, subject } = defineProps([
   <div class="topic-list">
     <ul class="topic-links">
       <li v-for="subTopic in subTopics">
-        <NuxtLink :to="`/${subject.id}/${topic.id}/${subTopic.id}`">{{
+        <NuxtLink :to="`/questions/${subTopic.id}`">{{
           subTopic.name
         }}</NuxtLink>
       </li>
