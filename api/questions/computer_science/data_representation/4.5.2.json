@@ -21,7 +21,7 @@
       ]
     },
     {
-      "question": "A computer uses 8-bit two's complement to store a number.\nUsing this representation, perform the decimal calculation {{number_a}} - {{number_b}}\nShow all your working.",
+      "question": "A computer uses 8-bit two's complement to store a number.\n\nUsing this representation, perform the decimal calculation {{number_a}} - {{number_b}}\n\nShow all your working.",
       "repeat": 5,
       "markScheme": [
         "Correct representation of {{number_a}} as __{{number_a_binary}}__",

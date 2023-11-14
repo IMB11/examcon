@@ -2,14 +2,16 @@
   <div class="exam-question-viewer">
     <div class="buttons">
       <Button @click="printQuestion">Print</Button>
-      <Button @click="showMarkScheme = !showMarkScheme"
+      <Button @click="showMarkScheme = !showMarkScheme" color="red"
         >Show Mark Scheme</Button
       >
-      <Button @click="nextQuestion">Next Question</Button>
+      <span><Toggle v-model="showAllQuestions" /> Show All</span>
+      <hr class="invisible"/>
+      <Button @click="previousQuestion" v-if="!showAllQuestions">Previous Question</Button>
+      <Button @click="nextQuestion" v-if="!showAllQuestions">Next Question</Button>
     </div>
     <div id="eq">
-      <div class="exam_question_generator">
-        <!-- Modify the template to use props instead of data -->
+      <div class="exam_question_generator" v-if="!showAllQuestions">
         <div class="question">
           <div class="number">
             <p
@@ -20,7 +22,7 @@
               {{ digit }}
             </p>
           </div>
-          <p class="prompt">{{ questions[currentNumber - 1].question }}</p>
+          <div class="prompt" v-html="renderHighlightedString(questions[currentNumber - 1].question)"></div>
           <p class="mark">
             [{{ questions[currentNumber - 1].markScheme.length }}]
           </p>
@@ -45,13 +47,51 @@
           </div>
         </div>
       </div>
+      <div v-else class="exam_question_generator">
+        <div v-for="question in questions">
+          <div class="question">
+          <div class="number">
+            <p
+              v-for="digit in convertNumberToBlockFormat(
+                (questions.indexOf(question) + 1).toString()
+              )"
+            >
+              {{ digit }}
+            </p>
+          </div>
+          <div class="prompt" v-html="renderHighlightedString(question.question)"></div>
+          <p class="mark">
+            [{{ question.markScheme.length }}]
+          </p>
+        </div>
+        <div class="answer_lines" v-if="!showMarkScheme">
+          <hr
+            v-for="mark in Array(
+              question.markScheme.length
+            )"
+          />
+        </div>
+        <div v-else>
+          <div
+            class="mark_given"
+            v-for="markGiven in question.markScheme"
+          >
+            <b>1 mark</b> for:
+            <div
+              class="markdown"
+              v-html="renderHighlightedString(markGiven)"
+            ></div>
+          </div>
+        </div>
+      </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, defineProps } from "vue";
-import { Button, renderHighlightedString } from "omorphia";
+import { Button, renderHighlightedString, Toggle } from "omorphia";
 import { usePaperizer } from "paperizer";
 
 const { paperize } = usePaperizer("eq", {
@@ -60,11 +100,17 @@ const { paperize } = usePaperizer("eq", {
 
 const props = defineProps(["questions"]);
 
+const showAllQuestions = ref(false);
 const currentNumber = ref(1);
 const showMarkScheme = ref(false);
 
 function nextQuestion() {
   currentNumber.value = (currentNumber.value % props.questions.length) + 1;
+  showMarkScheme.value = false;
+}
+
+function previousQuestion() {
+  currentNumber.value = (currentNumber.value - 2 + props.questions.length) % props.questions.length + 1;
   showMarkScheme.value = false;
 }
 
@@ -86,9 +132,20 @@ function convertNumberToBlockFormat(questionNumber) {
 async function printQuestion() {
   paperize();
 }
+
+async function printAllQuestions() {
+  showAllQuestions.value = true;
+  paperize();
+  showAllQuestions.value = false;
+}
 </script>
 
 <style scoped lang="scss">
+.invisible {
+  // not display: none;
+  visibility: hidden;
+}
+
 #eq {
   display: block;
   width: 100%;
@@ -109,11 +166,9 @@ async function printQuestion() {
   font-weight: normal;
   padding: 10px;
 
-  .question {
+  .question, div > .question {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    height: 100%;
     width: 100%;
     margin: 0;
 
@@ -146,11 +201,9 @@ async function printQuestion() {
     }
   }
 
-  .answer_lines {
+  .answer_lines, div > .answer_lines {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
     width: 100%;
     padding-top: 2.5rem;
     margin: 0;
