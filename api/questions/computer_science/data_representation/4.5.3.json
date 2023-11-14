@@ -1,0 +1,11 @@
+{
+    "name": "4.5.3 Units of Information",
+    "questions": [
+        {
+            "question": "What's the difference between a kibibyte and a kilobyte?",
+            "markScheme": [
+              "A kibibyte is 1024 bytes, a kilobyte is 1000 bytes"
+            ]
+        }
+    ]
+}

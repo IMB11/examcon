@@ -4,6 +4,7 @@ export enum VariableType {
   number_generated = "number_generated",
   evaluated_twos_complement = "evaluated_twos_complement",
   evaluated_expression = "evaluated_expression",
+  evaluated_hexadecimal = "evaluated_hexadecimal"
 }
 
 export interface Variable {
@@ -102,6 +103,37 @@ export class EvaluatedExpressionVariable implements Variable {
     return {
       name: this.name,
       value: eval(evaluatedValue)
+    };
+  }
+}
+
+export class EvaluatedHexadecimalVariable implements Variable {
+  name: string;
+  type: VariableType;
+  value: string;
+
+  public constructor(name: string, value: string) {
+    this.name = name;
+    this.type = VariableType.evaluated_hexadecimal;
+    this.value = value;
+  }
+
+  public getValue(variables: EvaluatedVariable[]): EvaluatedVariable {
+    let evaluatedValue = this.value.replace(/{{(.*?)}}/g, (match, p1) => {
+      const variable = variables.find((variable) => variable.name === p1);
+      if (!variable) {
+        throw new Error(`Variable ${p1} not found or hasn't been evaluated yet.`);
+      }
+      return variable.value;
+    });
+
+    // Convert to hexadecimal.
+    const decimalValue = eval(evaluatedValue);
+    const hexValue = decimalValue.toString(16).toUpperCase();
+
+    return {
+      name: this.name,
+      value: hexValue
     };
   }
 }

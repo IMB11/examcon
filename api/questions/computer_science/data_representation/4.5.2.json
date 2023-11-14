@@ -2,22 +2,95 @@
   "name": "4.5.2 Number Bases",
   "questions": [
     {
-      "question": "What is the binary equivalent of the decimal number 102?",
+      "question": "What is the binary equivalent of the decimal number {{number_a}}?",
+      "repeat": 4,
       "markScheme": [
-        "Working showing conversion between decimal 102 to binary 01100110"
+        "Working showing conversion between decimal {{number_a}} to binary {{number_a_binary}}"
+      ],
+      "variables": [
+        {
+          "name": "number_a",
+          "type": "number_generated",
+          "min": 1,
+          "max": 255
+        },
+        {
+          "name": "number_a_binary",
+          "type": "evaluated_twos_complement",
+          "value": "{{number_a}}"
+        }
       ]
     },
     {
-      "question": "What is the hexadecimal equivalent of the decimal number 87?",
+      "question": "What is the decimal equivalent of the binary number {{number_a_binary}}?",
+      "repeat": 4,
       "markScheme": [
-        "Working shown conversion between decimal 87 to binary __0101 0111__",
-        "Shown translating each 4 bit group into the hexadecimal __57__"
+        "Working showing conversion between binary {{number_a_binary}} to decimal {{number_a}}"
+      ],
+      "variables": [
+        {
+          "name": "number_a",
+          "type": "number_generated",
+          "min": 1,
+          "max": 255
+        },
+        {
+          "name": "number_a_binary",
+          "type": "evaluated_twos_complement",
+          "value": "{{number_a}}"
+        }
+      ]
+    },
+    {
+      "question": "What is the hexadecimal equivalent of the decimal number {{number_a}}?",
+      "repeat": 4,
+      "markScheme": [
+        "Working showing conversion between decimal {{number_a}} to hexadecimal {{number_a_hexadecimal}}"
+      ],
+      "variables": [
+        {
+          "name": "number_a",
+          "type": "number_generated",
+          "min": 1,
+          "max": 255
+        },
+        {
+          "name": "number_a_hexadecimal",
+          "type": "evaluated_hexadecimal",
+          "value": "{{number_a}}"
+        }
+      ]
+    },
+    {
+      "question": "What is the decimal equivalent of the hexadecimal number {{number_a_hexadecimal}}?",
+      "repeat": 4,
+      "markScheme": [
+        "Working showing conversion between hexadecimal {{number_a_hexadecimal}} to decimal {{number_a}}"
+      ],
+      "variables": [
+        {
+          "name": "number_a",
+          "type": "number_generated",
+          "min": 1,
+          "max": 255
+        },
+        {
+          "name": "number_a_hexadecimal",
+          "type": "evaluated_hexadecimal",
+          "value": "{{number_a}}"
+        }
       ]
     },
     {
       "question": "Why do computer scientists use hexadecimal over binary?",
       "markScheme": [
         "Provides a shorter representation of a number than binary."
+      ]
+    },
+    {
+      "question": "When programmers look at machine code, they tend to look at it in hexadecimal.\n\nState __one__ reason why.",
+      "markScheme": [
+        "Easier/Shorter to read/understand __than binary__"
       ]
     },
     {
@@ -32,14 +105,14 @@
         {
           "name": "number_a",
           "type": "number_generated",
-          "min": 1,
-          "max": 255
+          "min": 4,
+          "max": 128
         },
         {
           "name": "number_b",
           "type": "number_generated",
-          "min": 1,
-          "max": 255
+          "min": 4,
+          "max": 128
         },
         {
           "name": "number_a_binary",
@@ -63,6 +136,32 @@
           "type": "evaluated_twos_complement",
           "bits": 8,
           "value": "{{result}}"
+        }
+      ]
+    },
+    {
+      "question": "{{number_a_binary}} is an __unsigned binary integer__, what is its value in __hexadecimal__?",
+      "repeat": 3,
+      "markScheme": [
+        "Correct representation of {{number_a_binary}} as {{number_a_hexadecimal}}"
+      ],
+      "variables": [
+        {
+          "name": "number_a",
+          "type": "number_generated",
+          "min": "1",
+          "max": "255"
+        },
+        {
+          "name": "number_a_binary",
+          "type": "evaluated_twos_complement",
+          "bits": 8,
+          "value": "{{number_a}}"
+        },
+        {
+          "name": "number_a_hexadecimal",
+          "type": "evaluated_hexadecimal",
+          "value": "{{number_a}}"
         }
       ]
     }

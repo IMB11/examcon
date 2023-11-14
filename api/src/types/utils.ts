@@ -1,6 +1,6 @@
 import { Question } from "./question";
 import { QuestionDefinition } from "./subjects";
-import { EvaluatedExpressionVariable, EvaluatedTwosComplementVariable, EvaluatedVariable, NumberGeneratedVariable, Variable, VariableType } from "./variable";
+import { EvaluatedExpressionVariable, EvaluatedHexadecimalVariable, EvaluatedTwosComplementVariable, EvaluatedVariable, NumberGeneratedVariable, Variable, VariableType } from "./variable";
 
 export function twosComplement(value: number, bitCount: number) {
   let binaryStr;
@@ -45,6 +45,11 @@ export function getQuestions(subTopic: QuestionDefinition) {
             if (variable.type == VariableType.evaluated_twos_complement) {
               const evaluatedTwosComplement = new EvaluatedTwosComplementVariable(variable.name, variable.value, variable.bits)
               evaluatedVariables.push(evaluatedTwosComplement.getValue(evaluatedVariables));
+            }
+
+            if (variable.type == VariableType.evaluated_hexadecimal) {
+              const evaluatedHexadecimal = new EvaluatedHexadecimalVariable(variable.name, variable.value);
+              evaluatedVariables.push(evaluatedHexadecimal.getValue(evaluatedVariables));
             }
           });
 

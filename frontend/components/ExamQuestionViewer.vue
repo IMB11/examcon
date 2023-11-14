@@ -177,6 +177,7 @@ async function printAllQuestions() {
     }
 
     .mark {
+      margin-top: 2rem;
       font-weight: bold;
     }
 
@@ -186,6 +187,7 @@ async function printAllQuestions() {
     }
 
     .number {
+      margin-top: 2rem;
       display: flex;
       flex-direction: row;
 
