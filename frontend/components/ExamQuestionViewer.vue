@@ -22,7 +22,7 @@
               {{ digit }}
             </p>
           </div>
-          <div class="prompt" v-html="renderHighlightedString(questions[currentNumber - 1].question)"></div>
+          <div class="prompt" v-html="mdi.render(questions[currentNumber - 1].question)"></div>
           <p class="mark">
             [{{ questions[currentNumber - 1].markScheme.length }}]
           </p>
@@ -34,15 +34,14 @@
             )"
           />
         </div>
-        <div v-else>
+        <div v-if="showMarkScheme">
           <div
             class="mark_given"
             v-for="markGiven in questions[currentNumber - 1].markScheme"
           >
             <b>1 mark</b> for:
             <div
-              class="markdown"
-              v-html="renderHighlightedString(markGiven)"
+              v-html="mdi.render(markGiven)"
             ></div>
           </div>
         </div>
@@ -59,7 +58,7 @@
               {{ digit }}
             </p>
           </div>
-          <div class="prompt" v-html="renderHighlightedString(question.question)"></div>
+          <div class="prompt" v-html="mdi.render(question.question)"></div>
           <p class="mark">
             [{{ question.markScheme.length }}]
           </p>
@@ -79,7 +78,7 @@
             <b>1 mark</b> for:
             <div
               class="markdown"
-              v-html="renderHighlightedString(markGiven)"
+              v-html="mdi.render(markGiven)"
             ></div>
           </div>
         </div>
@@ -90,6 +89,11 @@
 </template>
 
 <script setup>
+import markdownIt from 'markdown-it'
+import markdownItLatex from 'markdown-it-latex'
+const mdi = markdownIt()
+mdi.use(markdownItLatex)
+
 import { ref, defineProps } from "vue";
 import { Button, renderHighlightedString, Toggle } from "omorphia";
 import { usePaperizer } from "paperizer";
@@ -177,7 +181,7 @@ async function printAllQuestions() {
     }
 
     .mark {
-      margin-top: 2rem;
+      margin-top: 1.25rem;
       font-weight: bold;
     }
 
@@ -187,7 +191,7 @@ async function printAllQuestions() {
     }
 
     .number {
-      margin-top: 2rem;
+      margin-top: 1.25rem;
       display: flex;
       flex-direction: row;
 

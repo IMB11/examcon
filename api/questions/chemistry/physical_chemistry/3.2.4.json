@@ -1,0 +1,11 @@
+{
+    "name": "3.2.4 Period 3 Elements",
+    "questions": [
+        {
+            "question": "Give an equation, including state symbols, for the reaction of sodium with water.",
+            "markScheme": [
+                "`$2Na(s) + 2 H2O(l) → 2NaOH(aq) + H2(g)$`"
+            ]
+        }
+    ]
+}

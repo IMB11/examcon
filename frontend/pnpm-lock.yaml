@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -8,6 +8,12 @@ dependencies:
   '@nuxtjs/color-mode':
     specifier: ^3.3.0
     version: 3.3.0
+  markdown-it:
+    specifier: ^13.0.2
+    version: 13.0.2
+  markdown-it-latex:
+    specifier: ^0.2.0
+    version: 0.2.0
   omorphia:
     specifier: ^0.6.5
     version: 0.6.5(vue@3.3.8)
@@ -2080,6 +2086,10 @@ packages:
   /argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
 
+  /asciimath-to-latex@0.3.2:
+    resolution: {integrity: sha512-+80CDzm6nXdtsYwUdxBOLo7FA6ZO5CfRyYHgqLpUZgavPYqodXHamOQuLZJksV+4CUteJs1h7cBaF63d2qa97Q==}
+    dev: false
+
   /ast-kit@0.11.2:
     resolution: {integrity: sha512-Q0DjXK4ApbVoIf9GLyCo252tUH44iTnD/hiJ2TQaJeydYWSpKk0sI34+WMel8S9Wt5pbLgG02oJ+gkgX5DV3sQ==}
     engines: {node: '>=16.14.0'}
@@ -3597,6 +3607,13 @@ packages:
     engines: {'0': node >= 0.2.0}
     dev: true
 
+  /katex@0.9.0:
+    resolution: {integrity: sha512-lp3x90LT1tDZBW2tjLheJ98wmRMRjUHwk4QpaswT9bhqoQZ+XA4cPcjcQBxgOQNwaOSt6ZeL/a6GKQ1of3LFxQ==}
+    hasBin: true
+    dependencies:
+      match-at: 0.1.1
+    dev: false
+
   /kleur@3.0.3:
     resolution: {integrity: sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==}
     engines: {node: '>=6'}
@@ -3784,6 +3801,13 @@ packages:
       - supports-color
     dev: true
 
+  /markdown-it-latex@0.2.0:
+    resolution: {integrity: sha512-vCaS6Dws9faA8lZel7Slfa1IYEnbYOjHzian/tDBulONBS+f9vRkFfQ4S0eFnTGtDTTXqE7zAnoezkv18b9IIA==}
+    dependencies:
+      asciimath-to-latex: 0.3.2
+      katex: 0.9.0
+    dev: false
+
   /markdown-it@13.0.2:
     resolution: {integrity: sha512-FtwnEuuK+2yVU7goGn/MJ0WBZMM9ZPgU9spqlFs7/A/pDIUNSOQZhUgOqYCficIuR2QaFnrt8LHqBWsbTAoI5w==}
     hasBin: true
@@ -3793,6 +3817,10 @@ packages:
       linkify-it: 4.0.1
       mdurl: 1.0.1
       uc.micro: 1.0.6
+    dev: false
+
+  /match-at@0.1.1:
+    resolution: {integrity: sha512-h4Yd392z9mST+dzc+yjuybOGFNOZjmXIPKWjxBd1Bb23r4SmDOsk2NYCU2BMUBGbSpZqwVsZYNq26QS3xfaT3Q==}
     dev: false
 
   /mdn-data@2.0.28:

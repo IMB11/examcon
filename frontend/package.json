@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "@nuxtjs/color-mode": "^3.3.0",
+    "markdown-it": "^13.0.2",
+    "markdown-it-latex": "^0.2.0",
     "omorphia": "^0.6.5",
     "paperizer": "^0.1.6",
     "sass": "^1.69.5"
