@@ -1,0 +1,35 @@
+{
+    "name": "3.1.8 Thermodynamics",
+    "questions": [
+        {
+            "question": "Calculate the lattice formation enthalpy of XY2 from the following data:\n- ΔHhyd(X+) = {{hyd_x}} kJ mol-1\n- ΔHhyd(Y-) = {{hyd_y}}\n- ΔHsol(XY2) = {{sol_xy}}",
+            "repeat": 5,
+            "variables": [
+                {
+                    "name": "hyd_x",
+                    "type": "number_generated",
+                    "min": -2500,
+                    "max": -50
+                },
+                {
+                    "name": "hyd_y",
+                    "type": "number_generated",
+                    "min": -2500,
+                    "max": -50
+                },
+                {
+                    "name": "sol_xy",
+                    "type": "number_generated",
+                    "min": 50,
+                    "max": 3500
+                },
+                {
+                    "name": "lat_enth",
+                    "type": "evaluated_expression",
+                    // ΔHsol = -ΔH(latticeFormation) + sum of ΔH(hydration)
+                    "value": "-{{sol_xy}} + ({{hyd_x}} + {{hyd_y}})"
+                }
+            ]
+        }
+    ]
+}
